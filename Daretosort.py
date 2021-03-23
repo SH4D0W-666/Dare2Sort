@@ -20,1395 +20,376 @@ can_widget.place(x=0,y=0)
 f1 = Frame(root,borderwidth=6).place(x=0,y=0)
 LabelInputtoPop = Label(f1,text="Source Bottle: ",fg='black',font='comicsans 10')
 LabelInputtoPush = Label(f1,text="Destination Bottle: ",font='comicsans 10')
-LabelInputtoPop.place(x=200,y=10)
-LabelInputtoPush.place(x=200,y=40)
+LabelInputtoPop.place(x=400,y=10)
+LabelInputtoPush.place(x=400,y=40)
 popvalue = StringVar()
 pushvalue = StringVar()
 popEntry = Entry(f1,textvariable=popvalue).place(x=570,y=10)
 pushEntry = Entry(f1,textvariable=pushvalue).place(x=570,y=40)
 
 def enter():
-    if (popvalue.get() == '1' ):
-        note.set('Game on')
-        if(len(Atop)==0):
-            note.set('Tube 1 is Already Empty')
-            print('Already Empty')
-        else:
-            if (len(Atop) == 3):
-                if (pushvalue.get() == '2'):
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                        print("Tube Full")
-                    if (len(Btop) == 2):
-                        print("Bstack 2 Index")
-                        temp = Atop[2]
-                        Btop.append(can_widget.create_rectangle(300, 250, 350, 300, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 1):
-                        print("Bstack 1 Index")
-                        temp = Atop[2]
-                        Btop.append(can_widget.create_rectangle(300, 300, 350, 350, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        print("Bstack 0 Index")
-                        temp = Atop[2]
-                        Btop.append(can_widget.create_rectangle(300, 350, 350, 400, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '3'):
-                    if (len(Ctop) == 3):
-                        note.set('Tube 3 is already Full')
-                        print("Tube Full")
-                    if (len(Ctop) == 2):
-                        temp = Atop[2]
-                        Ctop.append(can_widget.create_rectangle(500, 250, 550, 300, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Ctop) == 1):
-                        temp = Atop[2]
-                        Ctop.append(can_widget.create_rectangle(500, 300, 550, 350, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Ctop) == 0):
-                        temp = Atop[2]
-                        Ctop.append(can_widget.create_rectangle(500, 350, 550, 400, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '4'):
-                    print("Dstack")
-                    print(len(Dtop))
-                    if (len(Dtop) == 3):
-                        note.set('Tube 4 is already Full')
-                    if (len(Dtop) == 2):
-                        temp = Atop[2]
-                        Dtop.append(can_widget.create_rectangle(700, 250, 750, 300, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Dtop) == 1):
-                        temp = Atop[2]
-                        Dtop.append(can_widget.create_rectangle(700, 300, 750, 350, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Dtop) == 0):
-                        temp = Atop[2]
-                        Dtop.append(can_widget.create_rectangle(700, 350, 750, 400, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '5'):
-                    print("Estack")
-                    print(len(Dtop))
-                    if (len(Etop) == 3):
-                        note.set('Tube 5 is already Full')
-                    if (len(Etop) == 2):
-                        temp = Atop[2]
-                        Etop.append(can_widget.create_rectangle(900, 250, 950, 300, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Etop) == 1):
-                        temp = Atop[2]
-                        Etop.append(can_widget.create_rectangle(900, 300, 950, 350, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Etop) == 0):
-                        temp = Atop[2]
-                        Etop.append(can_widget.create_rectangle(900, 350, 950, 400, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-            elif(len(Atop) == 2):
-                    if (pushvalue.get() == '2'):
-                        print(len(Btop))
-                        if (len(Btop) == 3):
-                            note.set('Tube 2 is already Full')
-                        if (len(Btop) == 2):
-                            temp = Atop[1]
-                            Btop.append(can_widget.create_rectangle(300, 250, 350, 300, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Btop) == 1):
-                            temp = Atop[1]
-                            Btop.append(can_widget.create_rectangle(300, 300, 350, 350, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Btop) == 0):
-                            temp = Atop[1]
-                            Btop.append(can_widget.create_rectangle(300, 350, 350, 400, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '3'):
-                        print("Cstack")
-                        print(len(Ctop))
-                        if (len(Ctop) == 3):
-                            note.set('Tube 3 is already Full')
-                        if (len(Ctop) == 2):
-                            temp = Atop[1]
-                            Ctop.append(can_widget.create_rectangle(500, 250, 550, 300,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Ctop) == 1):
-                            temp = Atop[1]
-                            Ctop.append(can_widget.create_rectangle(500, 300, 550, 350,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Ctop) == 0):
-                            temp = Atop[1]
-                            Ctop.append(can_widget.create_rectangle(500, 350, 550, 400,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '4'):
-                        print("Dstack")
-                        print(len(Dtop))
-                        if (len(Dtop) == 3):
-                            note.set('Tube 4 is already Full')
-                        if (len(Dtop) == 2):
-                            temp = Atop[1]
-                            Dtop.append(can_widget.create_rectangle(700, 250, 750, 300,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Dtop) == 1):
-                            temp = Atop[1]
-                            Dtop.append(can_widget.create_rectangle(700, 300, 750, 350,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Dtop) == 0):
-                            temp = Atop[1]
-                            Dtop.append(can_widget.create_rectangle(700, 350, 750, 400,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '5'):
-                        print("Estack")
-                        print(len(Dtop))
-                        if (len(Etop) == 3):
-                            note.set('Tube 5 is already Full')
-                        if (len(Etop) == 2):
-                            temp = Atop[1]
-                            Etop.append(can_widget.create_rectangle(900, 250, 950, 300,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Etop) == 1):
-                            temp = Atop[1]
-                            Etop.append(can_widget.create_rectangle(900, 300, 950, 350,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Etop) == 0):
-                            temp = Atop[1]
-                            Etop.append(can_widget.create_rectangle(900, 350, 950, 400,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-            elif(len(Atop) == 1):
-                    if (pushvalue.get() == '2'):
-                        print(len(Btop))
-                        if (len(Btop) == 3):
-                            note.set('Tube 2 is already Full')
-                        if (len(Btop) == 2):
-                            temp = Atop[0]
-                            Btop.append(can_widget.create_rectangle(300, 250, 350, 300, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Btop) == 1):
-                            temp = Atop[0]
-                            print(can_widget.itemcget(Atop[0], "fill"))
-                            Btop.append(can_widget.create_rectangle(300, 300, 350, 350, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Btop) == 0):
-                            temp = Atop[0]
-                            Btop.append(can_widget.create_rectangle(300, 350, 350, 400, fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '3'):
-                        print("Cstack")
-                        print(len(Ctop))
-                        if (len(Ctop) == 3):
-                            note.set('Tube 3 is already Full')
-                        if (len(Ctop) == 2):
-                            temp = Atop[0]
-                            Ctop.append(can_widget.create_rectangle(500, 250, 550, 300,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Ctop) == 1):
-                            temp = Atop[0]
-                            Ctop.append(can_widget.create_rectangle(500, 300, 550, 350,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Ctop) == 0):
-                            temp = Atop[0]
-                            Ctop.append(can_widget.create_rectangle(500, 350, 550, 400,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '4'):
-                        print("Dstack")
-                        print(len(Dtop))
-                        if (len(Dtop) == 3):
-                            note.set('Tube 4 is already Full')
-                        if (len(Dtop) == 2):
-                            temp = Atop[0]
-                            Dtop.append(can_widget.create_rectangle(700, 250, 750, 300,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Dtop) == 1):
-                            temp = Atop[0]
-                            Dtop.append(can_widget.create_rectangle(700, 300, 750, 350,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Dtop) == 0):
-                            temp = Atop[0]
-                            Dtop.append(can_widget.create_rectangle(700, 350, 750, 400,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '5'):
-                        print("Estack")
-                        print(len(Dtop))
-                        if (len(Etop) == 3):
-                            note.set('Tube 5 is already Full')
-                        if (len(Etop) == 2):
-                            temp = Atop[0]
-                            Etop.append(can_widget.create_rectangle(900, 250, 950, 300,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Etop) == 1):
-                            temp = Atop[0]
-                            Etop.append(can_widget.create_rectangle(900, 300, 950, 350,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Etop) == 0):
-                            temp = Atop[0]
-                            Etop.append(can_widget.create_rectangle(900, 350, 950, 400,fill=can_widget.itemcget(Atop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-
-    #Pop from B stack
-    elif(popvalue.get() == '2'):
-            note.set('Game on')
-            if (len(Btop) == 0):
-                note.set('Tube 2 is already Empty')
-            else:
-                if (len(Btop) == 3):
-                    if (pushvalue.get() == '1'):
-                        if (len(Atop) == 3):
-                            note.set('Tube 1 is already Full')
-                        if (len(Atop) == 2):
-                            print("Bstack 2 Index")
-                            temp = Btop[2]
-                            Atop.append(
-                                can_widget.create_rectangle(100, 250, 150, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Atop) == 1):
-                            print("Bstack 1 Index")
-                            temp = Btop[2]
-                            Atop.append(
-                                can_widget.create_rectangle(100, 300, 150, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Atop) == 0):
-                            print("Bstack 0 Index")
-                            temp = Btop[2]
-                            Atop.append(
-                                can_widget.create_rectangle(100, 350, 150, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                            print("Len of Atop:", len(Btop))
-                    elif (pushvalue.get() == '3'):
-                        print("Cstack")
-                        print(len(Ctop))
-                        if (len(Ctop) == 3):
-                            note.set('Tube 3 is already Full')
-                            print("Tube Full")
-                        if (len(Ctop) == 2):
-                            temp = Btop[2]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 250, 550, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Ctop) == 1):
-                            temp = Btop[2]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 300, 550, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Ctop) == 0):
-                            temp = Btop[2]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 350, 550, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '4'):
-                        print("Dstack")
-                        print(len(Dtop))
-                        if (len(Dtop) == 3):
-                            note.set('Tube 4 is already Full')
-                        if (len(Dtop) == 2):
-                            temp = Btop[2]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 250, 750, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                        if (len(Dtop) == 1):
-                            temp = Btop[2]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 300, 750, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Dtop) == 0):
-                            temp = Btop[2]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 350, 750, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '5'):
-                        print("Estack")
-                        print(len(Dtop))
-                        if (len(Etop) == 3):
-                            note.set('Tube 5 is already Full')
-                        if (len(Etop) == 2):
-                            temp = Btop[2]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 250, 950, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                        if (len(Etop) == 1):
-                            temp = Btop[2]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 300, 950, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Etop) == 0):
-                            temp = Btop[2]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 350, 950, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                elif (len(Btop) == 2):
-                    if (pushvalue.get() == '1'):
-                        print(len(Atop))
-                        if (len(Atop) == 3):
-                            note.set('Tube 1 is already Full')
-                        if (len(Atop) == 2):
-                            temp = Btop[1]
-                            Atop.append(
-                                can_widget.create_rectangle(100, 250, 150, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Atop) == 1):
-                            temp = Btop[1]
-                            Atop.append(
-                                can_widget.create_rectangle(100, 300, 150, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Atop) == 0):
-                            temp = Btop[1]
-                            Atop.append(
-                                can_widget.create_rectangle(100, 350, 150, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '3'):
-                        print("Cstack")
-                        print(len(Ctop))
-                        if (len(Ctop) == 3):
-                            note.set('Tube 3 is already Full')
-                            print("Tube Full")
-                        if (len(Ctop) == 2):
-                            temp = Btop[1]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 250, 550, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                        if (len(Ctop) == 1):
-                            temp = Btop[1]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 300, 550, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Ctop) == 0):
-                            temp = Btop[1]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 350, 550, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '4'):
-                        print("Dstack")
-                        print(len(Dtop))
-                        if (len(Dtop) == 3):
-                            note.set('Tube 4 is already Full')
-                        if (len(Dtop) == 2):
-                            temp = Btop[1]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 250, 750, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                        if (len(Dtop) == 1):
-                            temp = Btop[1]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 300, 750, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Dtop) == 0):
-                            temp = Btop[1]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 350, 750, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '5'):
-                        print("Estack")
-                        print(len(Dtop))
-                        if (len(Etop) == 3):
-                            note.set('Tube 5 is already Full')
-                        if (len(Etop) == 2):
-                            temp = Btop[1]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 250, 950, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                        if (len(Etop) == 1):
-                            temp = Btop[1]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 300, 950, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Etop) == 0):
-                            temp = Btop[1]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 350, 950, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                elif (len(Btop) == 1):
-                    if (pushvalue.get() == '1'):
-                        print(len(Atop))
-                        if (len(Atop) == 3):
-                            note.set('Tube 1 is already Full')
-                        if (len(Atop) == 2):
-                            temp = Btop[0]
-                            Atop.append(
-                                can_widget.create_rectangle(100, 250, 150, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Atop) == 1):
-                            temp = Btop[0]
-                            print(can_widget.itemcget(Atop[0], "fill"),outline='white')
-                            Atop.append(
-                                can_widget.create_rectangle(100, 300, 150, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Atop) == 0):
-                            temp = Btop[0]
-                            Atop.append(
-                                can_widget.create_rectangle(100, 350, 150, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '3'):
-                        print("Cstack")
-                        print(len(Ctop))
-                        if (len(Ctop) == 3):
-                            note.set('Tube 3 is already Full')
-                        if (len(Ctop) == 2):
-                            temp = Btop[0]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 250, 550, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                        if (len(Ctop) == 1):
-                            temp = Btop[0]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 300, 550, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Ctop) == 0):
-                            temp = Atop[0]
-                            Ctop.append(
-                                can_widget.create_rectangle(500, 350, 550, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '4'):
-                        print("Dstack")
-                        print(len(Dtop))
-                        if (len(Dtop) == 3):
-                            note.set('Tube 4 is already Full')
-                        if (len(Dtop) == 2):
-                            temp = Btop[0]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 250, 750, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                        if (len(Dtop) == 1):
-                            temp = Btop[0]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 300, 750, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Dtop) == 0):
-                            temp = Btop[0]
-                            Dtop.append(
-                                can_widget.create_rectangle(700, 350, 750, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                    elif (pushvalue.get() == '5'):
-                        print("Estack")
-                        print(len(Etop))
-                        if (len(Etop) == 3):
-                            note.set('Tube 5 is already Full')
-                        if (len(Etop) == 2):
-                            temp = Btop[0]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 250, 950, 300,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-
-                        if (len(Etop) == 1):
-                            temp = Btop[0]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 300, 950, 350,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-                        if (len(Etop) == 0):
-                            temp = Btop[0]
-                            Etop.append(
-                                can_widget.create_rectangle(900, 350, 950, 400,
-                                                       fill=can_widget.itemcget(Btop.pop(), "fill"),outline='white'))
-                            can_widget.delete(temp)
-    # Pop from C stack
+    popstack = ''
+    if (popvalue.get() == '1'):
+        popstack = Atop
+    elif (popvalue.get() == '2'):
+        popstack = Btop
     elif (popvalue.get() == '3'):
-        note.set('Game on')
-        if (len(Ctop) == 0):
-            note.set('Tube 3 is already Empty')
-        else:
-            if (len(Ctop) == 3):
-                if (pushvalue.get() == '1'):
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    elif (len(Atop) == 2):
-                        temp = Ctop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    elif (len(Atop) == 1):
-                        temp = Ctop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    elif (len(Atop) == 0):
-                        temp = Ctop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                elif (pushvalue.get() == '2'):
-                    print("Bstack")
-                    print(len(Btop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Ctop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 1):
-                        temp = Ctop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Ctop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '4'):
-                    print("Dstack")
-                    print(len(Dtop))
-                    if (len(Dtop) == 3):
-                        note.set('Tube 4 is already Full')
-                    if (len(Dtop) == 2):
-                        temp = Ctop[2]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 250, 750, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Dtop) == 1):
-                        temp = Ctop[2]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 300, 750, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Dtop) == 0):
-                        temp = Ctop[2]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 350, 750, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '5'):
-                    print("Estack")
-                    if (len(Etop) == 3):
-                        note.set('Tube 5 is already Full')
-                    if (len(Etop) == 2):
-                        temp = Ctop[2]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 250, 950, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Etop) == 1):
-                        temp = Ctop[2]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 300, 950, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Etop) == 0):
-                        temp = Ctop[2]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 350, 950, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-            elif (len(Ctop) == 2):
-                if (pushvalue.get() == '1'):
-                    print(len(Atop))
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    if (len(Atop) == 2):
-                        temp = Ctop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 1):
-                        temp = Ctop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 0):
-                        temp = Ctop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '2'):
-                    print("Bstack")
-                    print(len(Btop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Ctop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Btop) == 1):
-                        temp = Ctop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Ctop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '4'):
-                    print("Dstack")
-                    print(len(Dtop))
-                    if (len(Dtop) == 3):
-                        note.set('Tube 4 is already Full')
-                    if (len(Dtop) == 2):
-                        temp = Ctop[1]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 250, 750, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Dtop) == 1):
-                        temp = Ctop[1]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 300, 750, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Dtop) == 0):
-                        temp = Ctop[1]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 350, 750, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '5'):
-                    print("Estack")
-                    print(len(Etop))
-                    if (len(Etop) == 3):
-                        note.set('Tube 5 is already Full')
-                    if (len(Etop) == 2):
-                        temp = Ctop[1]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 250, 950, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Etop) == 1):
-                        temp = Ctop[1]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 300, 950, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Etop) == 0):
-                        temp = Ctop[1]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 350, 950, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-            elif (len(Ctop) == 1):
-                if (pushvalue.get() == '1'):
-                    print(len(Atop))
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    if (len(Atop) == 2):
-                        temp = Ctop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 1):
-                        temp = Ctop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 0):
-                        temp = Ctop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '2'):
-                    print("Cstack")
-                    print(len(Ctop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Ctop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Btop) == 1):
-                        temp = Ctop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Ctop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '4'):
-                    print("Dstack")
-                    print(len(Dtop))
-                    if (len(Dtop) == 3):
-                        note.set('Tube 4 is already Full')
-                    if (len(Dtop) == 2):
-                        temp = Ctop[0]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 250, 750, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Dtop) == 1):
-                        temp = Ctop[0]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 300, 750, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Dtop) == 0):
-                        temp = Ctop[0]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 350, 750, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '5'):
-                    print("Estack")
-                    print(len(Etop))
-                    if (len(Etop) == 3):
-                        note.set('Tube 5 is already Full')
-                    if (len(Etop) == 2):
-                        temp = Ctop[0]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 250, 950, 300,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Etop) == 1):
-                        temp = Ctop[0]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 300, 950, 350,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Etop) == 0):
-                        temp = Ctop[0]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 350, 950, 400,
-                                                   fill=can_widget.itemcget(Ctop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-    # Pop from D stack
+        popstack = Ctop
     elif (popvalue.get() == '4'):
-        note.set('Game on')
-        if (len(Dtop) == 0):
-            note.set('Tube 4 is already Empty')
-        else:
-            if (len(Dtop) == 3):
-                if (pushvalue.get() == '1'):
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    elif (len(Atop) == 2):
-                        temp = Dtop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    elif (len(Atop) == 1):
-                        temp = Dtop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    elif (len(Atop) == 0):
-                        temp = Dtop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                elif (pushvalue.get() == '2'):
-                    print("Bstack")
-                    print(len(Btop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Dtop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 1):
-                        temp = Dtop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Dtop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '3'):
-                    print("Cstack")
-                    print(len(Ctop))
-                    if (len(Ctop) == 3):
-                        note.set('Tube 3 is already Full')
-                    if (len(Ctop) == 2):
-                        temp = Dtop[2]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 250, 550, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Ctop) == 1):
-                        temp = Dtop[2]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 300, 550, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Ctop) == 0):
-                        temp = Dtop[2]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 350, 550, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '5'):
-                    print("Estack")
-                    print(len(Etop))
-                    if (len(Etop) == 3):
-                        note.set('Tube 5 is already Full')
-                    if (len(Etop) == 2):
-                        temp = Dtop[2]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 250, 950, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Etop) == 1):
-                        temp = Dtop[2]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 300, 950, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Etop) == 0):
-                        temp = Dtop[2]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 350, 950, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-            elif (len(Dtop) == 2):
-                if (pushvalue.get() == '1'):
-                    print(len(Atop))
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    if (len(Atop) == 2):
-                        temp = Dtop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 1):
-                        temp = Dtop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 0):
-                        temp = Dtop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '2'):
-                    print("Bstack")
-                    print(len(Btop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Dtop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Btop) == 1):
-                        temp = Dtop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Dtop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '3'):
-                    print("Cstack")
-                    print(len(Ctop))
-                    if (len(Ctop) == 3):
-                        note.set('Tube 3 is already Full')
-                    if (len(Ctop) == 2):
-                        temp = Dtop[1]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 250, 550, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Ctop) == 1):
-                        temp = Dtop[1]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 300, 550, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Ctop) == 0):
-                        temp = Dtop[1]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 350, 550, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '5'):
-                    print("Estack")
-                    print(len(Etop))
-                    if (len(Etop) == 3):
-                        note.set('Tube 5 is already Full')
-                    if (len(Etop) == 2):
-                        temp = Dtop[1]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 250, 950, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Etop) == 1):
-                        temp = Dtop[1]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 300, 950, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Etop) == 0):
-                        temp = Dtop[1]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 350, 950, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-            elif (len(Dtop) == 1):
-                if (pushvalue.get() == '1'):
-                    print(len(Atop))
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    if (len(Atop) == 2):
-                        temp = Dtop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 1):
-                        temp = Dtop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 0):
-                        temp = Dtop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '2'):
-                    print("Bstack")
-                    print(len(Btop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Dtop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Btop) == 1):
-                        temp = Dtop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Dtop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '3'):
-                    print("Cstack")
-                    print(len(Ctop))
-                    if (len(Ctop) == 3):
-                        note.set('Tube 3 is already Full')
-                    if (len(Ctop) == 2):
-                        temp = Dtop[0]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 250, 550, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Ctop) == 1):
-                        temp = Dtop[0]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 300, 550, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Ctop) == 0):
-                        temp = Dtop[0]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 350, 550, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '5'):
-                    print("Estack")
-                    print(len(Etop))
-                    if (len(Etop) == 3):
-                        note.set('Tube 5 is already Full')
-                    if (len(Etop) == 2):
-                        temp = Dtop[0]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 250, 950, 300,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Etop) == 1):
-                        temp = Dtop[0]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 300, 950, 350,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Etop) == 0):
-                        temp = Dtop[0]
-                        Etop.append(
-                            can_widget.create_rectangle(900, 350, 950, 400,
-                                                   fill=can_widget.itemcget(Dtop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-    # Pop from E stack
+        popstack = Dtop
     elif (popvalue.get() == '5'):
-        note.set('Game on')
-        if (len(Etop) == 0):
-            note.set('Tube 5 is already Empty')
-        else:
-            if (len(Etop) == 3):
-                if (pushvalue.get() == '1'):
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    elif (len(Atop) == 2):
-                        temp = Etop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    elif (len(Atop) == 1):
-                        temp = Etop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    elif (len(Atop) == 0):
-                        temp = Etop[2]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
+        popstack = Etop
 
-                elif (pushvalue.get() == '2'):
-                    print("Bstack")
-                    print(len(Btop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Etop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 1):
-                        temp = Etop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Etop[2]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '3'):
-                    print("Cstack")
-                    print(len(Ctop))
-                    if (len(Ctop) == 3):
-                        note.set('Tube 3 is already Full')
-                    if (len(Ctop) == 2):
-                        temp = Etop[2]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 250, 550, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Ctop) == 1):
-                        temp = Etop[2]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 300, 550, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Ctop) == 0):
-                        temp = Etop[2]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 350, 550, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '4'):
-                    print("Dstack")
-                    print(len(Dtop))
-                    if (len(Dtop) == 3):
-                        note.set('Tube 4 is already Full')
-                    if (len(Dtop) == 2):
-                        temp = Etop[2]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 250, 750, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Dtop) == 1):
-                        temp = Etop[2]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 300, 750, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Dtop) == 0):
-                        temp = Etop[2]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 350, 750, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-            elif (len(Etop) == 2):
-                if (pushvalue.get() == '1'):
-                    print(len(Atop))
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    if (len(Atop) == 2):
-                        temp = Etop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 1):
-                        temp = Etop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 0):
-                        temp = Etop[1]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '2'):
-                    print("Bstack")
-                    print(len(Btop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Etop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Btop) == 1):
-                        temp = Etop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Etop[1]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '3'):
-                    print("Cstack")
-                    print(len(Ctop))
-                    if (len(Ctop) == 3):
-                        note.set('Tube 3 is already Full')
-                    if (len(Ctop) == 2):
-                        temp = Etop[1]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 250, 550, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Ctop) == 1):
-                        temp = Etop[1]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 300, 550, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Ctop) == 0):
-                        temp = Etop[1]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 350, 550, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '4'):
-                    print("Dstack")
-                    print(len(Dtop))
-                    if (len(Dtop) == 3):
-                        note.set('Tube 4 is already Full')
-                    if (len(Dtop) == 2):
-                        temp = Etop[1]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 250, 750, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Dtop) == 1):
-                        temp = Etop[1]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 300, 750, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Dtop) == 0):
-                        temp = Etop[1]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 350, 750, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-            elif (len(Etop) == 1):
-                if (pushvalue.get() == '1'):
-                    print(len(Atop))
-                    if (len(Atop) == 3):
-                        note.set('Tube 1 is already Full')
-                    if (len(Atop) == 2):
-                        temp = Etop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 250, 150, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 1):
-                        temp = Etop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 300, 150, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Atop) == 0):
-                        temp = Etop[0]
-                        Atop.append(
-                            can_widget.create_rectangle(100, 350, 150, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '2'):
-                    print("Bstack")
-                    print(len(Btop))
-                    if (len(Btop) == 3):
-                        note.set('Tube 2 is already Full')
-                    if (len(Btop) == 2):
-                        temp = Etop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 250, 350, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Btop) == 1):
-                        temp = Etop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 300, 350, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Btop) == 0):
-                        temp = Etop[0]
-                        Btop.append(
-                            can_widget.create_rectangle(300, 350, 350, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '3'):
-                    print("Cstack")
-                    print(len(Ctop))
-                    if (len(Ctop) == 3):
-                        note.set('Tube 3 is already Full')
-                    if (len(Ctop) == 2):
-                        temp = Etop[0]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 250, 550, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Ctop) == 1):
-                        temp = Etop[0]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 300, 550, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Ctop) == 0):
-                        temp = Etop[0]
-                        Ctop.append(
-                            can_widget.create_rectangle(500, 350, 550, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                elif (pushvalue.get() == '4'):
-                    print("Dstack")
-                    print(len(Dtop))
-                    if (len(Dtop) == 3):
-                        note.set('Tube 4 is already Full')
-                    if (len(Dtop) == 2):
-                        temp = Etop[0]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 250, 750, 300,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-
-                    if (len(Dtop) == 1):
-                        temp = Etop[0]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 300, 750, 350,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
-                    if (len(Dtop) == 0):
-                        temp = Etop[0]
-                        Dtop.append(
-                            can_widget.create_rectangle(700, 350, 750, 400,
-                                                   fill=can_widget.itemcget(Etop.pop(), "fill"),outline='white'))
-                        can_widget.delete(temp)
+    note.set('Game on')
+    if (len(popstack) == 0):
+        note.set(f'Tube {popvalue.get()} is Already Empty')
+        print('Already Empty')
+    else:
+        if (len(popstack) == 3):
+            if (popvalue.get() != '2' and pushvalue.get() == '2'):
+                if (len(Btop) == 3):
+                    note.set('Tube 2 is already Full')
+                    print("Tube Full")
+                if (len(Btop) == 2):
+                    print("Bstack 2 Index")
+                    temp = popstack[2]
+                    Btop.append(can_widget.create_rectangle(300, 250, 350, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Btop) == 1):
+                    print("Bstack 1 Index")
+                    temp = popstack[2]
+                    Btop.append(can_widget.create_rectangle(300, 300, 350, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Btop) == 0):
+                    print("Bstack 0 Index")
+                    temp = popstack[2]
+                    Btop.append(can_widget.create_rectangle(300, 350, 350, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '1' and pushvalue.get() == '1'):
+                print(len(Atop))
+                if (len(Atop) == 3):
+                    note.set('Tube 1 is already Full')
+                if (len(Atop) == 2):
+                    temp = popstack[2]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 250, 150, 300,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+                if (len(Atop) == 1):
+                    temp = popstack[2]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 300, 150, 350,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+                if (len(Atop) == 0):
+                    temp = popstack[2]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 350, 150, 400,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '3' and pushvalue.get() == '3'):
+                if (len(Ctop) == 3):
+                    note.set('Tube 3 is already Full')
+                    print("Tube Full")
+                if (len(Ctop) == 2):
+                    temp = popstack[2]
+                    Ctop.append(can_widget.create_rectangle(500, 250, 550, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Ctop) == 1):
+                    temp = popstack[2]
+                    Ctop.append(can_widget.create_rectangle(500, 300, 550, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Ctop) == 0):
+                    temp = popstack[2]
+                    Ctop.append(can_widget.create_rectangle(500, 350, 550, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '4' and pushvalue.get() == '4'):
+                print("Dstack")
+                print(len(Dtop))
+                if (len(Dtop) == 3):
+                    note.set('Tube 4 is already Full')
+                if (len(Dtop) == 2):
+                    temp = popstack[2]
+                    Dtop.append(can_widget.create_rectangle(700, 250, 750, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Dtop) == 1):
+                    temp = popstack[2]
+                    Dtop.append(can_widget.create_rectangle(700, 300, 750, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Dtop) == 0):
+                    temp = popstack[2]
+                    Dtop.append(can_widget.create_rectangle(700, 350, 750, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '5' and pushvalue.get() == '5'):
+                print("Estack")
+                print(len(Dtop))
+                if (len(Etop) == 3):
+                    note.set('Tube 5 is already Full')
+                if (len(Etop) == 2):
+                    temp = popstack[2]
+                    Etop.append(can_widget.create_rectangle(900, 250, 950, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Etop) == 1):
+                    temp = popstack[2]
+                    Etop.append(can_widget.create_rectangle(900, 300, 950, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Etop) == 0):
+                    temp = popstack[2]
+                    Etop.append(can_widget.create_rectangle(900, 350, 950, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+        elif (len(popstack) == 2):
+            if (popvalue.get() != "2" and pushvalue.get() == '2'):
+                print(len(Btop))
+                if (len(Btop) == 3):
+                    note.set('Tube 2 is already Full')
+                if (len(Btop) == 2):
+                    temp = popstack[1]
+                    Btop.append(can_widget.create_rectangle(300, 250, 350, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Btop) == 1):
+                    temp = popstack[1]
+                    Btop.append(can_widget.create_rectangle(300, 300, 350, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Btop) == 0):
+                    temp = popstack[1]
+                    Btop.append(can_widget.create_rectangle(300, 350, 350, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '1' and pushvalue.get() == '1'):
+                print(len(Atop))
+                if (len(Atop) == 3):
+                    note.set('Tube 1 is already Full')
+                if (len(Atop) == 2):
+                    temp = popstack[1]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 250, 150, 300,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+                if (len(Atop) == 1):
+                    temp = popstack[1]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 300, 150, 350,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+                if (len(Atop) == 0):
+                    temp = popstack[1]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 350, 150, 400,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '3' and pushvalue.get() == '3'):
+                print("Cstack")
+                print(len(Ctop))
+                if (len(Ctop) == 3):
+                    note.set('Tube 3 is already Full')
+                if (len(Ctop) == 2):
+                    temp = popstack[1]
+                    Ctop.append(can_widget.create_rectangle(500, 250, 550, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Ctop) == 1):
+                    temp = popstack[1]
+                    Ctop.append(can_widget.create_rectangle(500, 300, 550, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Ctop) == 0):
+                    temp = popstack[1]
+                    Ctop.append(can_widget.create_rectangle(500, 350, 550, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '4' and pushvalue.get() == '4'):
+                print("Dstack")
+                print(len(Dtop))
+                if (len(Dtop) == 3):
+                    note.set('Tube 4 is already Full')
+                if (len(Dtop) == 2):
+                    temp = popstack[1]
+                    Dtop.append(can_widget.create_rectangle(700, 250, 750, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Dtop) == 1):
+                    temp = popstack[1]
+                    Dtop.append(can_widget.create_rectangle(700, 300, 750, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Dtop) == 0):
+                    temp = popstack[1]
+                    Dtop.append(can_widget.create_rectangle(700, 350, 750, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '5' and pushvalue.get() == '5'):
+                print("Estack")
+                print(len(Dtop))
+                if (len(Etop) == 3):
+                    note.set('Tube 5 is already Full')
+                if (len(Etop) == 2):
+                    temp = popstack[1]
+                    Etop.append(can_widget.create_rectangle(900, 250, 950, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Etop) == 1):
+                    temp = popstack[1]
+                    Etop.append(can_widget.create_rectangle(900, 300, 950, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Etop) == 0):
+                    temp = popstack[1]
+                    Etop.append(can_widget.create_rectangle(900, 350, 950, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+        elif (len(popstack) == 1):
+            if (popvalue.get() != '2' and pushvalue.get() == '2'):
+                print(len(Btop))
+                if (len(Btop) == 3):
+                    note.set('Tube 2 is already Full')
+                if (len(Btop) == 2):
+                    temp = popstack[0]
+                    Btop.append(can_widget.create_rectangle(300, 250, 350, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Btop) == 1):
+                    temp = popstack[0]
+                    print(can_widget.itemcget(Atop[0], "fill"))
+                    Btop.append(can_widget.create_rectangle(300, 300, 350, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Btop) == 0):
+                    temp = popstack[0]
+                    Btop.append(can_widget.create_rectangle(300, 350, 350, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '1' and pushvalue.get() == '1'):
+                print(len(Atop))
+                if (len(Atop) == 3):
+                    note.set('Tube 1 is already Full')
+                if (len(Atop) == 2):
+                    temp = popstack[0]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 250, 150, 300,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+                if (len(Atop) == 1):
+                    temp = popstack[0]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 300, 150, 350,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+                if (len(Atop) == 0):
+                    temp = popstack[0]
+                    Atop.append(
+                        can_widget.create_rectangle(100, 350, 150, 400,
+                                                    fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '3' and pushvalue.get() == '3'):
+                print("Cstack")
+                print(len(Ctop))
+                if (len(Ctop) == 3):
+                    note.set('Tube 3 is already Full')
+                if (len(Ctop) == 2):
+                    temp = popstack[0]
+                    Ctop.append(can_widget.create_rectangle(500, 250, 550, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Ctop) == 1):
+                    temp = popstack[0]
+                    Ctop.append(can_widget.create_rectangle(500, 300, 550, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Ctop) == 0):
+                    temp = popstack[0]
+                    Ctop.append(can_widget.create_rectangle(500, 350, 550, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '4' and pushvalue.get() == '4'):
+                print("Dstack")
+                print(len(Dtop))
+                if (len(Dtop) == 3):
+                    note.set('Tube 4 is already Full')
+                if (len(Dtop) == 2):
+                    temp = popstack[0]
+                    Dtop.append(can_widget.create_rectangle(700, 250, 750, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Dtop) == 1):
+                    temp = popstack[0]
+                    Dtop.append(can_widget.create_rectangle(700, 300, 750, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Dtop) == 0):
+                    temp = popstack[0]
+                    Dtop.append(can_widget.create_rectangle(700, 350, 750, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+            elif (popvalue.get() != '5' and pushvalue.get() == '5'):
+                print("Estack")
+                print(len(Dtop))
+                if (len(Etop) == 3):
+                    note.set('Tube 5 is already Full')
+                if (len(Etop) == 2):
+                    temp = popstack[0]
+                    Etop.append(can_widget.create_rectangle(900, 250, 950, 300,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Etop) == 1):
+                    temp = popstack[0]
+                    Etop.append(can_widget.create_rectangle(900, 300, 950, 350,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
+                if (len(Etop) == 0):
+                    temp = popstack[0]
+                    Etop.append(can_widget.create_rectangle(900, 350, 950, 400,
+                                                            fill=can_widget.itemcget(popstack.pop(), "fill"),
+                                                            outline='white'))
+                    can_widget.delete(temp)
 
 def reset():
     print("Reset Working")
@@ -1445,13 +426,10 @@ Btop.append(can_widget.create_rectangle(300,350,350,400,fill='blue',outline='whi
 Btop.append(can_widget.create_rectangle(300,300,350,350,fill='green',outline='white'))
 Btop.append(can_widget.create_rectangle(300,250,350,300,fill='#eec201',outline='white'))
 
-
-
 rect_3= can_widget.create_rectangle(500,200,550,400,outline='white')
 Ctop.append(can_widget.create_rectangle(500,350,550,400,fill='red',outline='white'))
 Ctop.append(can_widget.create_rectangle(500,300,550,350,fill='#eec201',outline='white'))
 Ctop.append(can_widget.create_rectangle(500,250,550,300,fill='green',outline='white'))
-
 
 rect_4= can_widget.create_rectangle(700,200,750,400,outline='white')
 Dtop.append(can_widget.create_rectangle(700,350,750,400,fill='blue',outline='white'))
