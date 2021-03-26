@@ -3,9 +3,12 @@ from tkinter import *
 from tkinter import ttk
 import PIL
 from PIL import Image,ImageTk
-import time
+import time, datetime
+import backend
+go=0 #gameover
+time_given = 180
 
-
+#Creating window and canvas
 root= Tk()
 blank_space = " "
 root.title(140*blank_space+ 'DARE TO SORT')
@@ -15,9 +18,9 @@ root.geometry(f'{canvas_width}x{canvas_height}')
 root.config(bg='#69614c')
 can_widget = Canvas(root, width= canvas_width, height=canvas_height,bg="#36332c")
 can_widget.place(x=0,y=0)
-
-
 f1 = Frame(root,borderwidth=6).place(x=0,y=0)
+
+#Labels and Entry
 LabelInputtoPop = Label(f1,text="Source Bottle: ",fg='black',font='comicsans 10')
 LabelInputtoPush = Label(f1,text="Destination Bottle: ",font='comicsans 10')
 LabelInputtoPop.place(x=400,y=10)
@@ -26,10 +29,51 @@ popvalue = StringVar()
 pushvalue = StringVar()
 popEntry = Entry(f1,textvariable=popvalue).place(x=570,y=10)
 pushEntry = Entry(f1,textvariable=pushvalue).place(x=570,y=40)
+note= StringVar()
+#current info Label
+l3 = Label(root,text='',textvariable=note,padx=10,pady=10,borderwidth=3,relief=SUNKEN,bg='grey',fg='black',font='TimesNewRoman 10').place(x=450,y=130)
+#labels to identify bottle number
+label_A = Label(root,text="1",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=116,y=410)
+label_B = Label(root,text="2",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=316,y=410)
+label_C = Label(root,text="3",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=516,y=410)
+label_D = Label(root,text="4",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=716,y=410)
+label_E = Label(root,text="5",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=916,y=410)
+#Time and Steps Label
+count = StringVar()
+ftime = StringVar()
+label_timer = Label(root,text="",textvariable=count,borderwidth=2,bg='black',fg='red',font='TimesNewRoman 14 bold')
+label_timer.place(x=800,y=35)
+final_time = Label(root,text="",textvariable=ftime,borderwidth=2,bg='black',fg='red',font='TimesNewRoman 14 bold')
+step = StringVar()
+step_label = Label(root,text="",textvariable=step,borderwidth=2,bg='black',fg='red',font='TimesNewRoman 14 bold')
+step_label.place(x=800,y=5)
 
-tube_full=[]
-tube_full=[0,0,0,0,0]
+#Functions
+timer=0
+#function for steps and time
+def countdown(t):
+    global timer,time_given
+    if (count.get() == 'Time Left: 00:02'):
+        enter_btn['state'] = "disabled"
+        note.set("Game Over!! You Lose")
+        a = time.strptime( timer, "%M:%S")
+        timer= time_given - datetime.timedelta(minutes=a.tm_min, seconds=a.tm_sec).seconds
+        backend.insert(steps_count, str(timer),'lose')
+        go=1
+    # change text in label
+    mins, secs = divmod(t, 60)
+    timer = '{:02d}:{:02d}'.format(mins, secs)
+    if t > 0:
+        count.set("Time Left: " + timer)
+        step.set( "Steps: " + str(steps_count))
+        # call countdown again after 1000ms (1s)
+        root.after(1000, countdown, t-1)
+
+#function checking for Game Over
+tube_full = []
+tube_full = [0, 0, 0, 0, 0]
 def check(lst):
+    global go,timer,time_given
     if(len(lst)==3):
         ele = can_widget.itemcget(lst[0], "fill")
         chk = True
@@ -50,14 +94,23 @@ def check(lst):
                tube_full[3]=1
            elif (lst == Etop):
                tube_full[4]=1
-        print(tube_full)
     if tube_full.count(1)==4:
-        b1['state']="disabled"
-        note.set("Game Over, You Win!")
-        print("Game Over! You win!")
+        enter_btn['state']="disabled"
+        tem = count.get()
+        label_timer.destroy()
+        final_time.place(x=800,y=35)
+        ftime.set(tem)
+        note.set("Game Over, You Win!!")
+        go=1
+        a = time.strptime( timer, "%M:%S")
+        timer = time_given - datetime.timedelta(minutes=a.tm_min, seconds=a.tm_sec).seconds
+        backend.insert(steps_count, str(timer),'win')
 
-
+#function for moving liquid from one stack to another
+steps_count = 0
 def enter():
+    global steps_count
+    steps_count = steps_count + 1
     popstack = ''
     if (popvalue.get() == '1'):
         popstack = Atop
@@ -173,18 +226,15 @@ def enter():
                     note.set('Tube 1 is already Full')
                 if (len(Atop) == 2):
                     temp = popstack[1]
-                    Atop.append(
-                        can_widget.create_rectangle(100, 250, 150, 300,fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    Atop.append(can_widget.create_rectangle(100, 250, 150, 300,fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
                     can_widget.delete(temp)
                 if (len(Atop) == 1):
                     temp = popstack[1]
-                    Atop.append(
-                        can_widget.create_rectangle(100, 300, 150, 350,fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    Atop.append(can_widget.create_rectangle(100, 300, 150, 350,fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
                     can_widget.delete(temp)
                 if (len(Atop) == 0):
                     temp = popstack[1]
-                    Atop.append(
-                        can_widget.create_rectangle(100, 350, 150, 400,fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
+                    Atop.append(can_widget.create_rectangle(100, 350, 150, 400,fill=can_widget.itemcget(popstack.pop(), "fill"), outline='white'))
                     can_widget.delete(temp)
             elif (popvalue.get() != '3' and pushvalue.get() == '3'):
                 if (len(Ctop) == 3):
@@ -308,41 +358,41 @@ def enter():
                     temp = popstack[0]
                     Etop.append(can_widget.create_rectangle(900, 350, 950, 400,fill=can_widget.itemcget(popstack.pop(), "fill"),outline='white'))
                     can_widget.delete(temp)
-    check(Atop)
-    check(Btop)
-    check(Ctop)
-    check(Dtop)
-    check(Etop)
+    if go != 1:
+        check(Atop)
+    if go != 1:
+        check(Btop)
+    if go != 1:
+        check(Ctop)
+    if go != 1:
+        check(Dtop)
+    if go != 1:
+        check(Etop)
+
+
+
+
+#Reset Function
 def reset():
     print("Reset Working")
 
 
-b1 = Button(text='  Enter  ',command=enter,state=ACTIVE,borderwidth=3,pady=5)
-b1.place(x=510,y=75)
-b2 = Button(text='  Reset  ',command= reset,borderwidth=3,pady=5).place(x=880,y=700)
-note= StringVar()
-l3 = Label(root,text='',textvariable=note,padx=10,pady=10,borderwidth=3,relief=SUNKEN,bg='grey',fg='black',font='TimesNewRoman 10').place(x=450,y=130)
-label_A = Label(root,text="1",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=116,y=410)
-label_B = Label(root,text="2",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=316,y=410)
-label_C = Label(root,text="3",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=516,y=410)
-label_D = Label(root,text="4",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=716,y=410)
-label_E = Label(root,text="5",borderwidth=2,bg='white',fg='black',font='TimesNewRoman 8 bold').place(x=916,y=410)
+#Buttons
+enter_btn = Button(text='  Enter  ',command=enter,state=ACTIVE,borderwidth=3,pady=5)
+enter_btn.place(x=510,y=75)
+reset_btn = Button(text='  Reset  ',command= reset,borderwidth=3,pady=5).place(x=880,y=700)
 
+#Creating all canvas widgets and stacks
 Atop = []
 Btop = []
 Ctop = []
 Dtop = []
 Etop = []
-colorR = ['red','red','red']
 
 rect_1= can_widget.create_rectangle(100,200,150,400,outline='white')
 Atop.append(can_widget.create_rectangle(100,350,150,400,fill='blue',outline='white'))
 Atop.append(can_widget.create_rectangle(100,300,150,350,fill='red',outline='white'))
 Atop.append(can_widget.create_rectangle(100,250,150,300,fill='#eec201',outline='white'))
-#print(can_widget.itemcget(Atop[1],"fill"))
-
-
-
 
 rect_2= can_widget.create_rectangle(300,200,350,400,outline='white')
 Btop.append(can_widget.create_rectangle(300,350,350,400,fill='blue',outline='white'))
@@ -362,12 +412,6 @@ Dtop.append(can_widget.create_rectangle(700,250,750,300,fill='red',outline='whit
 rect_5= can_widget.create_rectangle(900,200,950,400,outline='white')
 
 rect6 = can_widget.create_rectangle(1000, 200, 1050, 400, outline ='white')
-
-#GameOver Module
-
-
-
-
 
 #HighScore Module
 score_widget = Canvas(root, width= canvas_width, height=canvas_height, bg="black", relief = "raised", bd = "8")
@@ -427,5 +471,7 @@ Score_Grid.insert("", 'end', text="L9", tags = ('oddrow'),
 Score_Grid.insert("", 'end', text="L10", tags = ('evenrow'),
              values=("10", "Mjolnir", "464"))
 
+
+countdown(time_given)
 
 root.mainloop()
