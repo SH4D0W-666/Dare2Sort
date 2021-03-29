@@ -151,6 +151,7 @@ def main():
             print("Time Taken: ", time_taken)
 
     # function for moving liquid from one stack to another\
+    global  steps_count
     steps_count=0
     def enter():
         global steps_count,go
