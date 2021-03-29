@@ -1,3 +1,4 @@
+#Just For Backup, currently Not in use
 import mysql.connector as mysql
 
 
@@ -8,3 +9,5 @@ def insert(steps_count,timer,wl):
     print("working")
     cur.execute("commit")
     conn.close()
+
+
