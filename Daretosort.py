@@ -84,9 +84,10 @@ def main():
     step_label.place(x=800, y=5)
 
     # function for steps and time
+    win=0
     def countdown(t):
-        global time_taken,go
-        if (count.get() == 'Time Left: 00:01'):
+        global time_taken,go,win
+        if (count.get() == 'Time Left: 00:01' and win!=1):
             label_timer.destroy()
             final_time.place(x=800, y=35)
             ftime.set("Time Left: 00:00")
@@ -113,7 +114,7 @@ def main():
     tube_full = [0, 0, 0, 0, 0]
 
     def check(lst):
-        global go, time_taken, time_given
+        global go, time_taken, time_given,win
         if (len(lst) == 3):
             ele = can_widget.itemcget(lst[0], "fill")
             chk = True
@@ -145,6 +146,7 @@ def main():
             a = time.strptime(time_taken, "%M:%S")
             time_taken = time_given - datetime.timedelta(minutes=a.tm_min, seconds=a.tm_sec).seconds
             go = 1
+            win=1
             print("win")
             print("Player: " + namevalue.get())
             print("Steps: ", steps_count)
@@ -509,7 +511,7 @@ def main():
     def reset():
 
         root.destroy()
-        main()
+
         print("Reset Working")
 
     # Buttons
