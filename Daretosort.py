@@ -3,8 +3,8 @@ from tkinter import *
 from tkinter import ttk
 import PIL
 from PIL import Image,ImageTk
-import time, datetime
-
+import time, datetime, random
+import csv
 
 def main():
     global  time_given,f1,go
@@ -526,27 +526,46 @@ def main():
     Dtop = []
     Etop = []
 
-    rect_1 = can_widget.create_rectangle(100, 200, 150, 400, outline='white')
-    Atop.append(can_widget.create_rectangle(100, 350, 150, 400, fill='blue', outline='white'))
-    Atop.append(can_widget.create_rectangle(100, 300, 150, 350, fill='red', outline='white'))
-    Atop.append(can_widget.create_rectangle(100, 250, 150, 300, fill='#eec201', outline='white'))
+    main_bottle = [Atop,Btop,Ctop,Dtop,Etop]
 
-    rect_2 = can_widget.create_rectangle(300, 200, 350, 400, outline='white')
-    Btop.append(can_widget.create_rectangle(300, 350, 350, 400, fill='green', outline='white'))
-    Btop.append(can_widget.create_rectangle(300, 300, 350, 350, fill='green', outline='white'))
-    Btop.append(can_widget.create_rectangle(300, 250, 350, 300, fill='#eec201', outline='white'))
+    ways = [[0, 3, 3, 3, 3], [1, 2, 3, 3, 3], [2, 2, 2, 3, 3]]
 
-    rect_3 = can_widget.create_rectangle(500, 200, 550, 400, outline='white')
-    Ctop.append(can_widget.create_rectangle(500, 350, 550, 400, fill='red', outline='white'))
-    Ctop.append(can_widget.create_rectangle(500, 300, 550, 350, fill='green', outline='white'))
-    Ctop.append(can_widget.create_rectangle(500, 250, 550, 300, fill='#eec201', outline='white'))
+    temp_items = random.sample(ways[random.randint(0, 2)], 5)
 
-    rect_4 = can_widget.create_rectangle(700, 200, 750, 400, outline='white')
-    Dtop.append(can_widget.create_rectangle(700, 350, 750, 400, fill='blue', outline='white'))
-    Dtop.append(can_widget.create_rectangle(700, 300, 750, 350, fill='blue', outline='white'))
-    Dtop.append(can_widget.create_rectangle(700, 250, 750, 300, fill='red', outline='white'))
+    colors = ['blue','red','#eec201','green','blue','red','green','blue','red','#eec201','green','#eec201']
 
-    rect_5 = can_widget.create_rectangle(900, 200, 950, 400, outline='white')
+    bx,by = 100,350
+
+    for i in range(5):
+        for j in range(temp_items[i]):
+            color_select = random.choice(colors)
+            main_bottle[i].append(can_widget.create_rectangle(bx, by, bx+50, by+50, fill=color_select, outline='white'))
+            colors.remove(color_select)
+            by-=50
+        bx+=200
+        by=350
+
+    rect_1 = can_widget.create_rectangle(100, 250, 150, 400, outline='white')
+    # Atop.append(can_widget.create_rectangle(100, 350, 150, 400, fill=random.choice(colors), outline='white'))
+    # Atop.append(can_widget.create_rectangle(100, 300, 150, 350, fill=random.choice(colors), outline='white'))
+    # Atop.append(can_widget.create_rectangle(100, 250, 150, 300, fill=random.choice(colors), outline='white'))
+
+    rect_2 = can_widget.create_rectangle(300, 250, 350, 400, outline='white')
+    # Btop.append(can_widget.create_rectangle(300, 350, 350, 400, fill=random.choice(colors), outline='white'))
+    # Btop.append(can_widget.create_rectangle(300, 300, 350, 350, fill=random.choice(colors), outline='white'))
+    # Btop.append(can_widget.create_rectangle(300, 250, 350, 300, fill=random.choice(colors), outline='white'))
+
+    rect_3 = can_widget.create_rectangle(500, 250, 550, 400, outline='white')
+    # Ctop.append(can_widget.create_rectangle(500, 350, 550, 400, fill=random.choice(colors), outline='white'))
+    # Ctop.append(can_widget.create_rectangle(500, 300, 550, 350, fill=random.choice(colors), outline='white'))
+    # Ctop.append(can_widget.create_rectangle(500, 250, 550, 300, fill=random.choice(colors), outline='white'))
+
+    rect_4 = can_widget.create_rectangle(700, 250, 750, 400, outline='white')
+    # Dtop.append(can_widget.create_rectangle(700, 350, 750, 400, fill=random.choice(colors), outline='white'))
+    # Dtop.append(can_widget.create_rectangle(700, 300, 750, 350, fill=random.choice(colors), outline='white'))
+    # Dtop.append(can_widget.create_rectangle(700, 250, 750, 300, fill=random.choice(colors), outline='white'))
+
+    rect_5 = can_widget.create_rectangle(900, 250, 950, 400, outline='white')
 
     rect6 = can_widget.create_rectangle(1000, 200, 1050, 400, outline='white')
 
@@ -576,6 +595,15 @@ def main():
 
     # verscrlbar.pack(side='right', fill='x')
     # Score_Grid.configure(xscrollcommand=verscrlbar.set)
+
+    # with open('highscores.csv', 'a') as writefile:
+    #     csvwriter = csv.writer(writefile)
+    #     if namevalue.get()!='':
+    #         csvwriter.writerow([namevalue,1000])
+    # with open('highscores.csv', 'r') as readfile:
+    #     csvreader = csv.reader(readfile)
+    #     for rows in csvreader:
+    #         print(rows)
 
     Score_Grid["columns"] = ("1", "2", "3")
     Score_Grid['show'] = 'headings'
