@@ -511,6 +511,7 @@ def main():
     def reset():
 
         root.destroy()
+        main()
 
         print("Reset Working")
 
