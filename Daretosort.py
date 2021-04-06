@@ -17,7 +17,7 @@ def main():
     canvas_width = 1800
     canvas_height = 1000
     root.geometry(f'{canvas_width}x{canvas_height}')
-    root.config(bg='#69614c')
+    # root.config(bg='#fff') #69614c
     f1 = Frame(root, borderwidth=6, width=canvas_width, height=canvas_height)
     f1.place(x=0, y=0)
     image2 = Image.open('assets//DTS_bg.jpg')
@@ -38,6 +38,7 @@ def main():
             start_btn.destroy()
             enter_btn.place(x=650, y=45)
             step_label.place(x=800, y=20)
+            label_timer.place(x=800,y=50)
             countdown(time_given)
             label_timer.config(bg="black")
             step_label.config(bg="black")
@@ -79,9 +80,8 @@ def main():
     # Time and Steps Label
     count = StringVar()
     ftime = StringVar()
-    label_timer = Label(f1, text="", textvariable=count, borderwidth=2, bg="#36332c", fg='red',
+    label_timer = Label(f1, text="", textvariable=count, borderwidth=2, fg='red',
                         font='TimesNewRoman 14 bold')
-    label_timer.place(x=800, y=50)
     final_time = Label(f1, text="", textvariable=ftime, borderwidth=2, bg='black', fg='red',
                        font='TimesNewRoman 14 bold')
     step = StringVar()
@@ -119,6 +119,7 @@ def main():
         cur = conn.cursor()
         cur.execute("SELECT * from score order by Points DESC")
         records = cur.fetchall()
+        print(records)
         i = 1
         for x in records:
             if (i % 2 != 0):
@@ -136,13 +137,13 @@ def main():
         global time_taken,go,win,points
         if (count.get() == 'Time Left: 00:00' and win!=1):
             label_timer.destroy()
-            final_time.place(x=800, y=35)
+            final_time.place(x=800, y=50)
             ftime.set("Time Left: 00:00")
             enter_btn['state'] = "disabled"
             note.set("Game Over!! You Lose")
             a = time.strptime(time_taken, "%M:%S")
             time_taken = datetime.timedelta(minutes=a.tm_min, seconds=a.tm_sec).seconds
-            points = 1*200 - steps_count*5
+            points = max(0,500-steps_count*10)
             go = 1
             print("Lose!")
             print("Player: "+ namevalue.get())
@@ -171,6 +172,17 @@ def main():
             for item in mycolorlst:
                 if ele != item:
                     chk = False
+                    if (chk == False):
+                        if (lst == Atop):
+                            tube_full[0] = 0
+                        elif (lst == Btop):
+                            tube_full[1] = 0
+                        elif (lst == Ctop):
+                            tube_full[2] = 0
+                        elif (lst == Dtop):
+                            tube_full[3] = 0
+                        elif (lst == Etop):
+                            tube_full[4] = 0
                     break
             if (chk == True):
                 if (lst == Atop):
@@ -188,7 +200,7 @@ def main():
             enter_btn['state'] = "disabled"
             tem = count.get()
             label_timer.destroy()
-            final_time.place(x=800, y=35)
+            final_time.place(x=800, y=50)
             ftime.set(tem)
             note.set("Game Over, You Win!!")
             a = time.strptime(str(time_taken), "%M:%S")
@@ -253,23 +265,30 @@ def main():
             else:
                 if (len(popstack)!=0):
                     if(len(pushstack)==3 and pushstack!=popstack):
-                        note.set(f'Tube {pushvalue.get()} is already empty')
-                    elif(len(pushstack)==2):
+                        note.set(f'Tube {pushvalue.get()} is already full')
+                    elif(len(pushstack)==2 and pushstack!=popstack):
                         steps_count=steps_count+1
                         temp = popstack[i]
                         pushstack.append(can_widget.create_rectangle(x+100, 250, y+150, 300,fill=can_widget.itemcget(popstack.pop(), "fill"),outline='white'))
                         can_widget.delete(temp)
-                    elif (len(pushstack) == 1):
+                    elif (len(pushstack) == 1 and pushstack!=popstack):
                         steps_count = steps_count + 1
                         temp = popstack[i]
                         pushstack.append(can_widget.create_rectangle(x+100, 300, y+150, 350,fill=can_widget.itemcget(popstack.pop(), "fill"),outline='white'))
                         can_widget.delete(temp)
-                    elif (len(pushstack) == 0):
+                    elif (len(pushstack) == 0 and pushstack!=popstack):
                         steps_count = steps_count + 1
                         temp = popstack[i]
                         pushstack.append(can_widget.create_rectangle(x+100, 350, y+150, 400,fill=can_widget.itemcget(popstack.pop(), "fill"),outline='white'))
                         can_widget.delete(temp)
-                op_info.set(f'Element Popped from Top of Tube {popvalue.get()} and Pushed to Top of Tube {pushvalue.get()}')
+
+                if pushstack==popstack:
+                    op_info.set(f'Please enter a valid input                                        ')
+                    l4.place(x=320, y=510)
+                else:
+                    op_info.set(f'Element Popped from Top of Tube {popvalue.get()} and Pushed to Top of Tube {pushvalue.get()}')
+                    l4.place(x=280, y=510)
+
                 step.set("Steps: " + str(steps_count))
             if go != 1:
                 check(Atop)
@@ -335,12 +354,24 @@ def main():
     rect6 = can_widget.create_rectangle(1000, 230, 1050, 400, outline='white')
     can_widget.create_line(1000, 230, 150, 230, fill="#36332c")
 
+
     # HighScore Module
-    score_widget = Canvas(root, width=canvas_width, height=canvas_height, bg="black", relief="raised", bd="8")
+    score_widget = Canvas(root, width=canvas_width, height=canvas_height, bg="black", relief="raised")
     score_widget.place(x=1000, y=0)
 
-    Score_Label = Label(score_widget, text="LeaderBoard", font="Jokerman 20 bold", fg="yellow", bg="black").place(x=180,
-                                                                                                                y=370)
+    Instruction_Label = Label(score_widget, text="Instructions", font="Jokerman 20 bold", fg="yellow", bg="black")
+    Instruction_Label.place(x=180, y=20)
+
+    Label(score_widget, text="1.   Enter bottle number from which you want to pop the liquid.", font="Helvetica 12 bold", fg="white", bg="black").place(x=45,y=80)
+
+
+    Label(score_widget, text="2.   Enter bottle number to which you want to append the liquid.", font="Helvetica 12 bold", fg="white", bg="black").place(x=45,y=120)
+    Label(score_widget, text="3.   Only the Liquid which is on top of tube can be appended.", font="Helvetica 12 bold",fg="white", bg="black").place(x=45, y=160)
+    Label(score_widget, text="4.   Only the Liquid which is on top of tube can be appended.", font="Helvetica 12 bold",fg="white", bg="black").place(x=45, y=200)
+    Label(score_widget, text="5.   To gain maximum points you need to complete the game as ", font="Helvetica 12 bold",fg="white", bg="black").place(x=45, y=240)
+    Label(score_widget, text="\tearly as possible with less number of steps.", font="Helvetica 12 bold",fg="white", bg="black").place(x=45, y=265)
+
+    Score_Label = Label(score_widget, text="LeaderBoard", font="Jokerman 20 bold", fg="yellow", bg="black").place(x=180,y=370)
     global Score_Grid
     Score_Grid = ttk.Treeview(score_widget, selectmode="browse")
     Score_Grid.place(x=30, y=420)
@@ -354,23 +385,6 @@ def main():
 
     Score_Grid.tag_configure('oddrow', background='orange')
     Score_Grid.tag_configure('evenrow', background='white')
-
-    # ##Scrollbar
-    # verscrlbar = ttk.Scrollbar(root,
-    #                            orient="vertical",
-    #                            command=Score_Grid.yview)
-    #
-    # verscrlbar.pack(side='right', fill='x')
-    # Score_Grid.configure(xscrollcommand=verscrlbar.set)
-    #
-    # with open('highscores.csv', 'a') as writefile:
-    #     csvwriter = csv.writer(writefile)
-    #     if namevalue.get()!='':
-    #         csvwriter.writerow([namevalue,1000])
-    # with open('highscores.csv', 'r') as readfile:
-    #     csvreader = csv.reader(readfile)
-    #     for rows in csvreader:
-    #         print(rows)
 
     Score_Grid["columns"] = ("1", "2", "3")
     Score_Grid['show'] = 'headings'

@@ -16,6 +16,7 @@ def fetch():
     cur = conn.cursor()
     cur.execute("SELECT * from score order by Points DESC")
     records = cur.fetchall()
+    print(records)
     print("working")
     cur.execute("commit")
     conn.close()
