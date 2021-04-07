@@ -102,7 +102,7 @@ def main():
     def createtable():
         conn = mysql.connect(host="localhost", user="root", password="",database="GameScore")
         cur = conn.cursor()
-        cur.execute("CREATE TABLE score ( id int(100) NOT NULL auto_increment, Name varchar(100), Points varchar(100), PRIMARY KEY(id) );")
+        cur.execute("CREATE TABLE score ( id int(100) NOT NULL auto_increment, Name varchar(100), Points int(100), PRIMARY KEY(id) );")
         cur.execute("commit")
         conn.close()
     def insert(namevalue, point):
