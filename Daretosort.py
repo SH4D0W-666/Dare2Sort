@@ -1,15 +1,19 @@
 import tkinter as t
 from tkinter import *
 from tkinter import ttk
-import PIL
 from PIL import Image,ImageTk
 import time, datetime, random
+import pygame
 import mysql.connector as mysql
 points=0
 def main():
+    pygame.init()
     global  time_given,f1,go,points
     go=0
     time_given = 180
+    move_sound = pygame.mixer.Sound("2.mp3")
+    win_sound = pygame.mixer.Sound("1.mp3")
+    lose_sound = pygame.mixer.Sound("3.wav")
     # Creating window and canvas
     root = Tk()
     blank_space = " "
@@ -20,11 +24,8 @@ def main():
     # root.config(bg='#fff') #69614c
     f1 = Frame(root, borderwidth=6, width=canvas_width, height=canvas_height)
     f1.place(x=0, y=0)
-    image2 = Image.open('assets//DTS_bg.jpg')
-    image1 = ImageTk.PhotoImage(image2.resize((1000, 1150), Image.ANTIALIAS))
     can_widget = Canvas(f1, width=canvas_width, height=canvas_height, bg="#36332c")
     can_widget.place(x=0, y=0)
-    #can_widget.create_image(0, 0, image=image1, anchor='nw')      #To add Image Just Remove this comment
 
     #function for taking Name input and starting game
     def start():
@@ -62,20 +63,20 @@ def main():
     op_info = StringVar()
     # current info Label
     l3 = Label(f1, text='', textvariable=note, padx=10, pady=10, borderwidth=3, relief=SUNKEN, bg='grey', fg='black',
-               font='TimesNewRoman 10')
-    l4 = Label(f1, text='', textvariable=op_info, padx=10, pady=10, borderwidth=3, relief=SUNKEN, bg='grey', fg='black',
-               font='TimesNewRoman 10')
+               font='TimesNewRoman 10 bold')
+    l4 = Label(f1, text='', textvariable=op_info, padx=10, pady=10, borderwidth=3, relief=RIDGE, bg='grey', fg='yellow',
+               font='Times 12 bold')
     # operation info Label
     # labels to identify bottle number
-    label_A = Label(f1, text="1", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 8 bold').place(x=116,
+    label_A = Label(f1, text="1", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 9 bold').place(x=116,
                                                                                                             y=410)
-    label_B = Label(f1, text="2", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 8 bold').place(x=316,
+    label_B = Label(f1, text="2", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 9 bold').place(x=316,
                                                                                                             y=410)
-    label_C = Label(f1, text="3", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 8 bold').place(x=516,
+    label_C = Label(f1, text="3", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 9 bold').place(x=516,
                                                                                                             y=410)
-    label_D = Label(f1, text="4", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 8 bold').place(x=716,
+    label_D = Label(f1, text="4", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 9 bold').place(x=716,
                                                                                                             y=410)
-    label_E = Label(f1, text="5", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 8 bold').place(x=916,
+    label_E = Label(f1, text="5", borderwidth=2, bg='white', fg='black', font='TimesNewRoman 9 bold').place(x=916,
                                                                                                             y=410)
     # Time and Steps Label
     count = StringVar()
@@ -141,6 +142,8 @@ def main():
             ftime.set("Time Left: 00:00")
             enter_btn['state'] = "disabled"
             note.set("Game Over!! You Lose")
+            pygame.mixer.Sound.play(lose_sound)
+            pygame.mixer.music.stop()
             a = time.strptime(time_taken, "%M:%S")
             time_taken = datetime.timedelta(minutes=a.tm_min, seconds=a.tm_sec).seconds
             points = max(0,500-steps_count*10)
@@ -162,7 +165,7 @@ def main():
     tube_full = [0, 0, 0, 0, 0]
     def check(lst):
         global go, time_taken, time_given,win
-        l3.place(x=450, y=130)
+        l3.place(x=470, y=130)
         l4.place(x=280,y=510)
         if (len(lst) == 3):
             ele = can_widget.itemcget(lst[0], "fill")
@@ -203,6 +206,8 @@ def main():
             final_time.place(x=800, y=50)
             ftime.set(tem)
             note.set("Game Over, You Win!!")
+            pygame.mixer.Sound.play(win_sound)
+            pygame.mixer.music.stop()
             a = time.strptime(str(time_taken), "%M:%S")
             time_taken = datetime.timedelta(minutes=a.tm_min, seconds=a.tm_sec).seconds
             win=1
@@ -269,16 +274,22 @@ def main():
                     elif(len(pushstack)==2 and pushstack!=popstack):
                         steps_count=steps_count+1
                         temp = popstack[i]
+                        pygame.mixer.Sound.play(move_sound)
+                        pygame.mixer.music.stop()
                         pushstack.append(can_widget.create_rectangle(x+100, 250, y+150, 300,fill=can_widget.itemcget(popstack.pop(), "fill"),outline='white'))
                         can_widget.delete(temp)
                     elif (len(pushstack) == 1 and pushstack!=popstack):
                         steps_count = steps_count + 1
                         temp = popstack[i]
+                        pygame.mixer.Sound.play(move_sound)
+                        pygame.mixer.music.stop()
                         pushstack.append(can_widget.create_rectangle(x+100, 300, y+150, 350,fill=can_widget.itemcget(popstack.pop(), "fill"),outline='white'))
                         can_widget.delete(temp)
                     elif (len(pushstack) == 0 and pushstack!=popstack):
                         steps_count = steps_count + 1
                         temp = popstack[i]
+                        pygame.mixer.Sound.play(move_sound)
+                        pygame.mixer.music.stop()
                         pushstack.append(can_widget.create_rectangle(x+100, 350, y+150, 400,fill=can_widget.itemcget(popstack.pop(), "fill"),outline='white'))
                         can_widget.delete(temp)
 
@@ -286,7 +297,7 @@ def main():
                     op_info.set(f'Please enter a valid input                                        ')
                     l4.place(x=320, y=510)
                 else:
-                    op_info.set(f'Element Popped from Top of Tube {popvalue.get()} and Pushed to Top of Tube {pushvalue.get()}')
+                    op_info.set(f'Liquid Popped from Top of Bottle {popvalue.get()} and Pushed to Top of Bottle {pushvalue.get()}')
                     l4.place(x=280, y=510)
 
                 step.set("Steps: " + str(steps_count))
@@ -307,7 +318,7 @@ def main():
         main()
 
     # Buttons
-    enter_btn = Button(text='  Enter  ', command=enter, state=ACTIVE, borderwidth=3, pady=5)
+    enter_btn = Button(text='  Enter  ',command=enter, state=ACTIVE, borderwidth=3, pady=5)
     reset_btn = Button(text='  Reset  ', command=reset, borderwidth=3, pady=5).place(x=880, y=580)
 
     # Creating all canvas widgets and stacks
@@ -362,14 +373,12 @@ def main():
     Instruction_Label = Label(score_widget, text="Instructions", font="Jokerman 20 bold", fg="yellow", bg="black")
     Instruction_Label.place(x=180, y=20)
 
-    Label(score_widget, text="1.   Enter bottle number from which you want to pop the liquid.", font="Helvetica 12 bold", fg="white", bg="black").place(x=45,y=80)
-
-
-    Label(score_widget, text="2.   Enter bottle number to which you want to append the liquid.", font="Helvetica 12 bold", fg="white", bg="black").place(x=45,y=120)
-    Label(score_widget, text="3.   Only the Liquid which is on top of tube can be appended.", font="Helvetica 12 bold",fg="white", bg="black").place(x=45, y=160)
-    Label(score_widget, text="4.   Only the Liquid which is on top of tube can be appended.", font="Helvetica 12 bold",fg="white", bg="black").place(x=45, y=200)
-    Label(score_widget, text="5.   To gain maximum points you need to complete the game as ", font="Helvetica 12 bold",fg="white", bg="black").place(x=45, y=240)
-    Label(score_widget, text="\tearly as possible with less number of steps.", font="Helvetica 12 bold",fg="white", bg="black").place(x=45, y=265)
+    Label(score_widget, text="1.   Enter Source bottle number from which you want to pop liquid.", font="Helvetica 12 bold", fg="white", bg="black").place(x=25,y=80)
+    Label(score_widget, text="2.   Enter Destination bottle number to which you want to append\n the liquid.", font="Helvetica 12 bold", fg="white", bg="black").place(x=25,y=120)
+    Label(score_widget, text="3.   Only the Liquid which is on top of bottle can be Popped.", font="Helvetica 12 bold",fg="white", bg="black").place(x=25, y=180)
+    Label(score_widget, text="4.   The Popped Liquid can be appended to top of another bottle \nOnly", font="Helvetica 12 bold",fg="white", bg="black").place(x=25, y=220)
+    Label(score_widget, text="5.   To gain maximum points you need to complete the game as ", font="Helvetica 12 bold",fg="white", bg="black").place(x=25, y=270)
+    Label(score_widget, text="\tearly as possible with minimum number of steps.", font="Helvetica 12 bold",fg="white", bg="black").place(x=25, y=295)
 
     Score_Label = Label(score_widget, text="LeaderBoard", font="Jokerman 20 bold", fg="yellow", bg="black").place(x=180,y=370)
     global Score_Grid
@@ -402,5 +411,6 @@ def main():
     # createtable()
     fetch()
     root.mainloop()
+    pygame.quit()
 
 main()
